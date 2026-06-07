@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    DOCKER_USERNAME: /myapp/docker_credentials/username
+    DOCKER_PASSWORD: /myapp/docker_credentials/password
+    DOCKER_REGISTRY_URL: /myapp/docker_credentials/registry_url
+phases:
+  install:
+    java: 17
+  pre_build:
+    commands:
+      - echo "logging in to Docker Hub"
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  build:
+    commands:
+      - echo "Building Docker Image"
+      - docker build -t "$DOCKER_REGISTRY_URL/$OCKER_USERNAME/samplejavaprojectfinal" .
+      - docker push "$DOCKER_REGISTRY_URL/$OCKER_USERNAME/samplejavaprojectfinal"
+  post_build:
+    commands:
+      - echo "Build Sucessfull"
