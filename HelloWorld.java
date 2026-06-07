@@ -4,5 +4,3 @@ public class HelloWorld {
         System.out.println("Build successful.");
     }
 }
-
-
